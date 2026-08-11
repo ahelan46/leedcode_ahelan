@@ -1,0 +1,41 @@
+// Last updated: 8/11/2026, 4:06:00 PM
+class Solution {
+    public int evalRPN(String[] tokens) {
+
+        Deque<Integer> stack = new ArrayDeque<>();
+
+        for(String token : tokens) {
+
+            if(token.equals("+") || token.equals("-") || token.equals("*") ||token.equals("/")) {
+
+                int right = stack.pop();
+                int left = stack.pop();
+                
+                
+
+                switch(token) {
+
+                    case "+":
+                        stack.push(left + right);
+                        break;
+
+                    case "-":
+                        stack.push(left - right);
+                        break;
+
+                    case "*":
+                        stack.push(left * right);
+                        break;
+
+                    default:
+                        stack.push(left / right);
+                }
+            }
+            else {
+                stack.push(Integer.parseInt(token));
+            }
+        }
+
+        return stack.pop();
+    }
+}
